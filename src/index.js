@@ -1,3 +1,4 @@
+import './nt-modal.scss'
 import NtTeleport from './NtTeleport.vue'
 import mitt from 'mitt'
 const defaultModalOptions = {

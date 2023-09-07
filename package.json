@@ -1,7 +1,7 @@
 {
   "name": "vue-nt-modal",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "MODE=demo vite",
@@ -10,7 +10,22 @@
     "build:demo": "MODE=demo vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "main": "./dist/nt-modal.umd.js",
+  "module": "./dist/nt-modal.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/nt-modal.es.js",
+      "require": "./dist/nt-modal.umd.js"
+    }
+  },
+  "files": ["dist", "src"],
+  "bugs": {
+    "url": "https://github.com/noistommy/vue-nt-modal/issues"
+  },
+  "homepage": "https://github.com/noistommy/vue-nt-modal#readme",
+  "keywords": ["vue", "modal", "teleport", "plugins"],
+  "style": "./dist/nt-modal.css",
+  "peerDependencies": {
     "mitt": "^3.0.1",
     "vue": "^3.3.4"
   },
@@ -18,5 +33,9 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "sass": "^1.66.1",
     "vite": "^4.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noistommy/vue-nt-modal.git"
   }
 }
