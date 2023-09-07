@@ -1,0 +1,22 @@
+{
+  "name": "vue-nt-modal",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "MODE=demo vite",
+    "build": "npm run build:code",
+    "build:code": "MODE=lib vite build",
+    "build:demo": "MODE=demo vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "mitt": "^3.0.1",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "sass": "^1.66.1",
+    "vite": "^4.4.5"
+  }
+}
