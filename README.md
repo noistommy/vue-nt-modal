@@ -1,6 +1,14 @@
 vue-nt-modal
 ============
 
+![Static Badge](https://img.shields.io/badge/vue_3-only-%234FC08D?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/javascript-%23F7DF1E?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/html-%23E34F26?style=for-the-badge&logo=html)
+![Static Badge](https://img.shields.io/badge/sass-%23CC6699?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/vite-bundler-%23646CFF?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/vue_plugin-user_custom_with_vue_3-%234FC08D?style=for-the-badge)
+
+
  `vue-nt-modal` is a modal system library for vue, which utilizes the `teleport` feature supported by vue 3 to display user-created components (contents) outside of the application. Create outside of the application, implement it so that it doesn't affect the internal layer system, and make it work global, allowing users to display modal on the top-level layer anywhere in the application. Provides the basic structure (header, close button, default button) and the user can import only the modal content part as a component. Also, there is a component that can be comfirmed inside, so you can simply display the confirm modal.
 
 You can specify options related to the window closing function, and depending on the options, you can close the window with the `click` or `esc` button. You can also open and close multiple modal sequentially by allowing modal calls inside the modal.
