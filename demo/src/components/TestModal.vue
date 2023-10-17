@@ -1,9 +1,9 @@
 <template>
   <div class="modal">
     <div class="modal-header">
-      <div class="title">{{ title }} {{ modalId }}</div>
+      <div class="title">{{ title }} ({{ modalId }})</div>
       <div class="close-btn" @click="$emit('close')">
-        <i class="fa fa-xmark"></i>
+       <i class="fa fa-xmark"></i>
       </div>
     </div>
     <div class="modal-contents">
@@ -12,10 +12,10 @@
       </div>
     </div>
     <div class="modal-footer align-right">
-      <button class="nt-button secondary" @click="addModal">생성</button>
+      <button class="ga-button secondary" @click="addModal">생성</button>
 <!--      <button class="ga-button green" @click="returnTest('테스트')">테스트</button>-->
-      <button class="nt-button primary" @click="addConfirm">{{ pText }}</button>
-      <button class="nt-button secondary outline" @click="$emit('close')">{{ nText }}</button>
+      <button class="ga-button primary" @click="addConfirm">{{ pText }}</button>
+      <button class="ga-button secondary outline" @click="$emit('close')">{{ nText }}</button>
     </div>
   </div>
 </template>

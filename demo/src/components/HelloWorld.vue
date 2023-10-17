@@ -36,34 +36,53 @@ function showConfirm() {
     options: modalOption
   })
 }
+const toggleOption = (type) => {
+  if(type === 'x') {
+    modalOption.clickToClose = !modalOption.clickToClose
+  } else {
+    modalOption.escapeToClose = !modalOption.escapeToClose
+  }
+}
 
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
+  <h1 class="header">{{ msg }}</h1>
+  <h5 class="header title bold">설정</h5>
+    <div class="ga-list">
+      <div class="item ga-message" @click="toggleOption('x')">
+        <div class="item-title">
+          Use 'Click to close'
+          <div class="sub-title">>> 클릭으로 닫기</div>
+        </div>
+        <div class="btn-set">
+          <template v-if="modalOption.clickToClose">
+            <div class="ga-tag label primary">사용</div>
+          </template>
+          <template v-else>
+            <div class="ga-tag label secondary">사용안함</div>
+          </template>
+        </div>
+      </div>
+      <div class="item ga-message" @click="toggleOption('esc')">
+        <div class="item-title">
+          Use 'Press Escape Button to Close''
+          <div class="sub-title">>> ESC 버튼을 사용하여 닫기</div>
+        </div>
+        <div class="btn-set">
+          <template v-if="modalOption.escapeToClose">
+            <div class="ga-tag label primary">사용</div>
+          </template>
+          <template v-else>
+            <div class="ga-tag label secondary">사용안함</div>
+          </template>
+        </div>
+      </div>
+    </div>
   <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <button type="button" @click="showModal">Show Modal</button>
-    <button type="button" @click="showConfirm">Show Confirm</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+    <button class="ga-button primary" type="button" @click="showModal">Show Modal</button>
+    <button class="ga-button importance" type="button" @click="showConfirm">Show Confirm</button>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
 <style scoped>
