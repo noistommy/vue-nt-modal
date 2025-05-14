@@ -23,35 +23,28 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'NtConfirm',
-  data() {
-    return {
-      isLoading: false
-    }
-  },
-  props: {
-    id: Number,
-    options: Object,
-    props: Object
-  },
-  computed: {
-    getWidth() {
-      return this.width + 'px'
-    }
-  },
-  methods: {
-    allClose() {
-      this.props.result(this.props.params)
-      this.$ntModal.closeAll()
-    },
-    closeModal() {
-      this.$emit('close')
-      this.$ntModal.close()
-    }
-  }
-}
-</script>
 
+<script setup>
+import { computed, inject } from 'vue'
+
+const modal = inject('$ntModal')
+const emit = defineEmits(['close'])
+const props = defineProps({
+  id: Number,
+  options: Object,
+  props: Object
+})
+
+// const isLoading = ref(false)
+
+const allClose = () => {
+  // props.result(props.params)
+  modal.closeAll()
+}
+const closeModal = () => {
+  emit('close')
+  modal.close()
+}
+
+</script>
 <style lang="scss"></style>

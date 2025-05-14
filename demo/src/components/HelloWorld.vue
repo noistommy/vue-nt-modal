@@ -1,15 +1,16 @@
 <script setup>
-import { ref, reactive, getCurrentInstance } from 'vue'
+import { ref, reactive, getCurrentInstance, inject } from 'vue'
 import TestModal from './TestModal.vue'
 
 defineProps({
   msg: String,
 })
 
+const ntModal = inject('$ntModal')
 const count = ref(0)
 
-const { proxy } = getCurrentInstance()
-const ntModal = proxy.$ntModal
+// const { proxy } = getCurrentInstance()
+// const ntModal = proxy.$ntModal
 
 const modalProps = {
   title: '모달 테스트',

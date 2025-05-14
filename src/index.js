@@ -27,7 +27,8 @@ const init = () => {
 
 export default {
   install(app, options = {}) {
-    app.config.globalProperties.$ntModal = init()
+    // app.config.globalProperties.$ntModal = init()
+    app.provide('$ntModal', init())
     extendOptions = setOption(options)
     const extendComp = { extends: NtTeleport, props: { options: { type: Object, default: () => extendOptions } } }
     app.component('NtTeleport', extendComp)

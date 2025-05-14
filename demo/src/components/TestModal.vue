@@ -20,75 +20,76 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import TestModal from './TestModal.vue'
+import { ref, inject, watch } from 'vue'
 
-export default {
-  name: 'TestModal',
-  props: {
-    modalId: {
-      type: Number,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      default: '본문 작성'
-    },
-    pText: {
-      type: String,
-      default: '확인'
-    },
-    nText: {
-      type: String,
-      default: '취소'
-    }
+
+const ntModal = inject('$ntModal')
+
+defineOptions({
+  name: 'TestModal'
+})
+
+const resultConfirm = ref(null)
+
+defineProps({
+  modalId: {
+    type: Number,
+    required: true
   },
-  data() {
-    return {
-      resultConfirm: ''
-    }
+  title: {
+    type: String,
+    required: true
   },
-  watch: {
-    resultConfirm() {
-      this.returnTest(this.resultConfirm)
-    }
+  description: {
+    type: String,
+    default: '본문 작성'
   },
-  methods: {
-    addModal() {
-      const modalProps = {
-        title: '모달 테스트',
-        description: '모달 테스트 입니다.',
-        pText: '저장'
-      }
-      this.$ntModal.show({
-        comp: TestModal,
-        props: modalProps,
-        options: {}
-      })
-    },
-    addConfirm() {
-      const modalProps = {
-        title: '확인',
-        description: '모달 컴펌 테스트 입니까?',
-        pText: '확인',
-        result: data => {
-          this.returnTest(data)
-        }
-      }
-      this.$ntModal.show({
-        comp: 'confirm',
-        props: modalProps,
-        options: {}
-      })
-    },
-    returnTest(data) {
-      this.$attrs.testFunc(data)
+  pText: {
+    type: String,
+    default: '확인'
+  },
+  nText: {
+    type: String,
+    default: '취소'
+  }
+})
+
+watch(resultConfirm.value, () => {
+  this.returnTest(resultConfirm.value)
+})
+
+const addModal = () => {
+  const modalProps = {
+    title: '모달 테스트',
+    description: '모달 테스트 입니다.',
+    pText: '저장'
+  }
+  ntModal.show({
+    comp: TestModal,
+    props: modalProps,
+    options: {}
+  })
+}
+const addConfirm = () => {
+  const modalProps = {
+    title: '확인',
+    description: '모달 컴펌 테스트 입니까?',
+    pText: '확인',
+    result: data => {
+      this.returnTest(data)
     }
   }
+  ntModal.show({
+    comp: 'confirm',
+    props: modalProps,
+    options: {}
+  })
+}
+
+const returnTest = (data) => {
+  this.$attrs.testFunc(data)
 }
 </script>
 

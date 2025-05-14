@@ -16,6 +16,8 @@
 <script>
 import NtModal from './NtModal.vue'
 import NtConfirm from './NtConfirm.vue'
+import { inject } from 'vue'
+
 export default {
   name: 'NtTeleport',
   components: { NtModal, NtConfirm },
@@ -40,10 +42,12 @@ export default {
     }
   },
   mounted() {
-    const { emitter } = this.$ntModal
+    const modal = inject('$ntModal')
+    const { emitter } = modal
     emitter.on('show-modal', modalRef => {
       modalRef.id = this.modalIndex
       modalRef.options = { ...this.options, ...modalRef.options }
+      console.log(modalRef.options)
       this.modalRef.push(modalRef)
       this.modalIndex++
     })

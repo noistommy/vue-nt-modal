@@ -3,62 +3,62 @@
     <div v-if="isVisible" class="nt-modal" :style="{ '--offset': `${(id % 5) * 20}px` }">
       <div class="nt-modal-background" @click="closeModalToClick" />
       <div class="nt-modal-container">
-        <component :is="compContents" :modal-id="id" v-bind="props" @close="closeModal" />
+        <component :is="compContents" :modal-id="id" v-bind="props.props" @close="closeModal" />
       </div>
     </div>
   </transition>
 </template>
 
-<script>
-import { shallowRef } from 'vue'
-export default {
-  name: 'NtModal',
-  data() {
-    return {
-      isVisible: false,
-      compContents: null
-    }
-  },
-  props: {
-    id: Number,
-    comp: {
-      type: Object,
-      default: () => {
-        return {}
-      }
+<script setup>
+import { ref, onMounted, onUnmounted, nextTick, inject } from 'vue'
+
+const modal = inject('$ntModal')
+const props = defineProps({
+  id: Number,
+  comp: {
+    type: Object,
+    default: () => {
+      return {}
     },
-    options: Object,
-    props: Object
   },
-  mounted() {
-    this.compContents = shallowRef(this.comp)
-    this.$nextTick(() => (this.isVisible = this.compContents))
-    // this.isVisible = this.compContents
-    if (this.options.escapeToClose) {
-      window.addEventListener('keydown', this.onEscapeKeyPress)
-    }
-  },
-  unmounted() {
-    if (this.options.escapeToClose) {
-      window.removeEventListener('keydown', this.onEscapeKeyPress)
-    }
-  },
-  methods: {
-    closeModal() {
-      this.$emit('close')
-      this.$ntModal.close(this.id)
-    },
-    onEscapeKeyPress(event) {
-      const keyCode = event.keyCode || event.which
-      if (keyCode === 27) {
-        this.closeModal()
-      }
-    },
-    closeModalToClick(e) {
-      if (this.options.clickToClose && e.target.className.indexOf('background') > -1) {
-        this.$ntModal.close(this.id)
-      }
-    }
+  options: Object,
+  props: Object,
+})
+
+const emit = defineEmits(['close'])
+const isVisible = ref(false)
+const compContents = ref(null)
+
+const handleEscapeKey = (e) => {
+  onEscapeKeyPress(e)
+}
+
+onMounted(() => {
+  compContents.value = props.comp
+  nextTick(() => (isVisible.value = compContents.value))
+  if (props.options.escapeToClose) {
+    window.addEventListener('keydown', handleEscapeKey)
+  }
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleEscapeKey)
+})
+const closeModal = () => {
+  emit('close')
+  modal.close(props.id)
+}
+
+const onEscapeKeyPress = (event) => {
+  console.log(event)
+  const keyCode = event.keyCode || event.which
+  if (keyCode === 27) {
+    closeModal()
+  }
+}
+const closeModalToClick = (event) => {
+  if (props.options.clickToClose && event.target.className.indexOf('background') > -1) {
+    modal.close(props.id)
   }
 }
 </script>
