@@ -1,5 +1,5 @@
-$tableBorderColor: #d7dae2;
-$headerBackgroundColor: #e5e9f2;
+$tableBorderColor: transparent;
+$headerBackgroundColor: #ebebeb;
 $buttonPadding: 8px 11px 8px;
 body .nt-modal {
   position: fixed;
@@ -17,7 +17,7 @@ body .nt-modal {
   .nt-modal-container {
     display: inline-block;
     border: 1px solid $tableBorderColor;
-    border-radius: 4px;
+    border-radius: 1em;
     overflow: hidden;
     box-shadow: 2px 5px 4px rgba(0, 0, 0, 0.16);
     position: absolute;

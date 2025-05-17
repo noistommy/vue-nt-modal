@@ -5,7 +5,7 @@
       <div class="modal confirm">
         <div class="modal-header">
           <div class="title">{{ props.title }}</div>
-          <div class="close-btn" @click="$emit('close')">
+          <div class="close-btn" @click="closeModal">
             <i class="fa fa-xmark"></i>
           </div>
         </div>
@@ -29,7 +29,7 @@ import { computed, inject } from 'vue'
 
 const modal = inject('$ntModal')
 const emit = defineEmits(['close'])
-const props = defineProps({
+defineProps({
   id: Number,
   options: Object,
   props: Object
