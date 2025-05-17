@@ -34,6 +34,7 @@ const libConfig = {
 const demoConfig = defineConfig({
   ...commonConfig,
   root: "./demo",
+  base: process.env.NODE_ENV === 'production' ? '/vue-nt-modal/' : '/',
 })
 
 // https://vitejs.dev/config/
