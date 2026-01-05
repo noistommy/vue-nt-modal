@@ -1,5 +1,4 @@
 $tableBorderColor: transparent;
-$headerBackgroundColor: #ebebeb;
 $buttonPadding: 8px 11px 8px;
 body .nt-modal {
   position: fixed;
@@ -7,8 +6,9 @@ body .nt-modal {
   left: 0;
   right: auto;
   bottom: auto;
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
   .nt-modal-background {
     position: absolute;
     width: 100%;
@@ -24,26 +24,41 @@ body .nt-modal {
     top: calc(50% - var(--offset));
     left: calc(50% - var(--offset));
     transform: translate(-50%, -50%);
+    
     .modal {
       min-width: 350px;
-      background-color: #fff;
-      color: #333;
+      // background-color: inherit;
+      // color: inherit;
       .modal-header {
         position: relative;
         padding: 8px 12px;
-        background-color: $headerBackgroundColor;
+        // background-color: $headerBackgroundColor;
         border-bottom: 1px solid $tableBorderColor;
-
+        text-align: center;
         .title {
-          font-weight: 900;
+          font-size: 1.2em;
+          font-weight: 600;
         }
 
         .close-btn {
           cursor: pointer;
           position: absolute;
+          background-color: #D75757;
+          color: #333;
+          font-size: 8px;
+          width: 1rem;
+          height: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
           top: 50%;
-          right: 12px;
+          left: 12px;
           transform: translateY(-50%);
+          i {opacity: 0;}
+          &:hover i {
+            opacity: 0.5;
+          }
         }
       }
 
@@ -70,7 +85,7 @@ body .nt-modal {
   }
   &:last-child {
     .nt-modal-background {
-      background-color: rgba(0, 0, 0, 0.16);
+      background-color: rgba(0, 0, 0, 0.6);
     }
   }
 }
@@ -83,8 +98,6 @@ body .nt-modal {
     line-height: 1em;
     vertical-align: baseline;
     cursor: pointer;
-    color: #333;
-    background-color: #d4d4d4;
     padding: $buttonPadding;
     text-align: center;
     user-select: none;
@@ -100,19 +113,20 @@ body .nt-modal {
     background .1s ease;
     &.hover, &.focus,
     &:hover, &:focus {
-        background-color: #c6c6c6;
+        // background-color: #c6c6c6;
         outline: none;
     }
     &.disabled,
     &[disabled], &:disabled {
         cursor: default;
-        //opacity: 0.5;
-        color: #C4C4C4 !important;
-        border-color: #C4C4C4 !important;
-        background-color: #F2F2f2 !important;
+        opacity: 0.5;
         pointer-events: none;
     }
-    &+ .nt-button {
+    & + .nt-button {
         margin-left: 5px;
+    }
+    &.text {
+      color: #909090;
+      background-color: transparent;
     }
 }

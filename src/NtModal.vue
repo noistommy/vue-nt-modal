@@ -1,16 +1,25 @@
 <template>
   <transition name="fade">
-    <div v-if="isVisible" class="nt-modal" :style="{ '--offset': `${(id % 5) * 20}px` }">
+    <div v-if="isVisible" class="nt-modal" :style="offsetStyle">
       <div class="nt-modal-background" @click="closeModalToClick" />
       <div class="nt-modal-container">
-        <component :is="compContents" :modal-id="id" v-bind="props.props" @close="closeModal" />
+        <component :is="compContents" :modal-id="id" v-bind="props.props" @close="closeModal">
+          <template #header>
+            <div class="modal-header">
+              <div class="title">{{ props.props.title }}</div>
+              <div class="close-btn" @click="closeModal">
+                <i class="xi-close"></i>
+              </div>
+            </div>
+          </template>
+        </component>
       </div>
     </div>
   </transition>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick, inject } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, inject, computed } from 'vue'
 
 const modal = inject('$ntModal')
 const props = defineProps({
@@ -32,6 +41,10 @@ const compContents = ref(null)
 const handleEscapeKey = (e) => {
   onEscapeKeyPress(e)
 }
+
+const offsetStyle = computed(() => {
+  return { '--offset': `${(props.id % 5) * props.options.offset}px` }
+})
 
 onMounted(() => {
   compContents.value = props.comp

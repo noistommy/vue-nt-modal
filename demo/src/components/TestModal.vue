@@ -1,21 +1,31 @@
 <template>
   <div class="modal">
-    <div class="modal-header">
+    <template v-if="useHeader">
+      <slot name="header"></slot>
+    </template>
+    <!-- <div class="modal-header">
       <div class="title">{{ title }} ({{ modalId }})</div>
       <div class="close-btn" @click="$emit('close')">
-       <i class="fa fa-xmark"></i>
+        <slot name="close">
+          <i class="xi-close"></i>
+        </slot>
       </div>
-    </div>
+    </div> -->
     <div class="modal-contents">
       <div class="contents">
         <div>{{ description }}</div>
+        <div>{{lorem_text}}</div>
       </div>
     </div>
-    <div class="modal-footer align-right">
-      <button class="ga-button secondary" @click="addModal">생성</button>
+    <div class="modal-footer">
+      <div class="btn-set add">
+        <button v-if="useNew" class="ga-button" @click="addModal">New</button>
+      </div>
 <!--      <button class="ga-button green" @click="returnTest('테스트')">테스트</button>-->
-      <button class="ga-button primary" @click="addConfirm">{{ pText }}</button>
-      <button class="ga-button secondary outline" @click="$emit('close')">{{ nText }}</button>
+      <div class="btn-set">
+        <button class="ga-button text" @click="$emit('close')">{{ nText }}</button>
+        <button class="ga-button primary" @click="addConfirm">{{ pText }}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +37,7 @@ import { ref, inject, watch } from 'vue'
 
 const ntModal = inject('$ntModal')
 
+const lorem_text =  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in odio quis velit vulputate luctus. Vivamus suscipit, mauris eget hendrerit tempor, dolor dolor commodo lorem, feugiat euismod tortor eros id nisl. Fusce finibus eget nisl non malesuada. Praesent dictum magna eget metus congue vehicula. Quisque quis ex ex. Pellentesque efficitur rhoncus posuere. Nulla nec rutrum enim. Nam at magna ut arcu euismod tincidunt. Morbi dapibus ultrices erat, ut venenatis magna consectetur sit amet. Donec efficitur quis erat id suscipit. Sed pellentesque nunc quis turpis euismod accumsan.'
 defineOptions({
   name: 'TestModal'
 })
@@ -48,12 +59,14 @@ defineProps({
   },
   pText: {
     type: String,
-    default: '확인'
+    default: 'Action'
   },
   nText: {
     type: String,
-    default: '취소'
-  }
+    default: 'Cancel'
+  },
+  useHeader: Boolean,
+  useNew: Boolean,
 })
 
 watch(resultConfirm.value, () => {
@@ -64,12 +77,16 @@ const addModal = () => {
   const modalProps = {
     title: '모달 테스트',
     description: '모달 테스트 입니다.',
-    pText: '저장'
+    pText: '저장',
+    useHeader: false,
+    useNew: false
   }
   ntModal.show({
     comp: TestModal,
     props: modalProps,
-    options: {}
+    options: {
+
+    }
   })
 }
 const addConfirm = () => {
@@ -96,5 +113,18 @@ const returnTest = (data) => {
 <style lang="scss" scoped>
 .modal {
   width: 500px;
+  background-color: var(--bgc);
+  color: var(--txt);
+  .modal-contents {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .modal-footer {
+    display: flex;
+    justify-content: end;
+    .btn-set.add {
+      flex-grow: 1;
+    }
+  }
 }
 </style>

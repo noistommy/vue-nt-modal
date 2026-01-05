@@ -6,7 +6,7 @@
         <div class="modal-header">
           <div class="title">{{ props.title }}</div>
           <div class="close-btn" @click="closeModal">
-            <i class="fa fa-xmark"></i>
+            <i class="xi-close"></i>
           </div>
         </div>
         <div class="modal-contents">
@@ -15,8 +15,8 @@
           </div>
         </div>
         <div class="modal-footer align-right">
-          <button class="nt-button primary" @click="allClose">확인</button>
-          <button class="nt-button secondary outline" @click="closeModal">취소</button>
+          <button class="nt-button text" @click="closeModal">{{props.nText || 'Cancel'}}</button>
+          <button class="nt-button primary" @click="allClose">{{props.pText || 'Confirm'}}</button>
         </div>
       </div>
     </div>
@@ -47,4 +47,9 @@ const closeModal = () => {
 }
 
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+  .confirm {
+    color: var(--txt);
+    background-color: var(--bgc);
+  }
+</style>

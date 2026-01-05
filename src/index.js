@@ -2,9 +2,10 @@ import './nt-modal.scss'
 import NtTeleport from './NtTeleport.vue'
 import mitt from 'mitt'
 const defaultModalOptions = {
-  useStack: false,
+  useStack: true,
   clickToClose: false,
-  escapeToClose: false
+  escapeToClose: false,
+  offset: 20
 }
 let extendOptions = {}
 const setOption = modalOption => {

@@ -48,18 +48,25 @@ export default {
       modalRef.id = this.modalIndex
       modalRef.options = { ...this.options, ...modalRef.options }
       console.log(modalRef.options)
-      this.modalRef.push(modalRef)
-      this.modalIndex++
+      if (modalRef.options.useStack) {
+        this.modalRef.push(modalRef)
+        this.modalIndex++
+      } else {
+        this.modalRef[0] = modalRef
+        this.modalIndex = 0
+      }
+      document.body.style.overflow = 'hidden'
     })
     emitter.on('close-modal', modalId => {
-      console.log(modalId)
       this.modalRef.pop()
-      this.modalIndex--
+      if (this.modalIndex > 0) this.modalIndex--
+      document.body.style.overflow = ''
     })
     emitter.on('close-all-modal', () => {
       this.isOpen = false
       this.modalRef = []
       this.modalIndex = 0
+      document.body.style.overflow = ''
     })
   },
   methods: {
@@ -70,4 +77,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped />
+<style lang="scss">
+
+</style>
