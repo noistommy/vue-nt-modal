@@ -35,6 +35,9 @@ const demoConfig = defineConfig({
   ...commonConfig,
   root: "./demo",
   base: process.env.NODE_ENV === 'production' ? '/vue-nt-modal/' : '/',
+  server: {
+    port: 5901
+  }
 })
 
 // https://vitejs.dev/config/

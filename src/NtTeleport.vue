@@ -1,14 +1,16 @@
 <template>
   <teleport to="body">
     <template v-if="isModals">
-      <template v-for="modal in modalRef" :key="modal.id">
-        <template v-if="modal.comp === 'confirm'">
-          <nt-confirm v-bind="modal" />
+      <div class="nt-modals">
+        <template v-for="modal in modalRef" :key="modal.id">
+          <template v-if="modal.comp === 'confirm'">
+            <nt-confirm v-bind="modal" />
+          </template>
+          <template v-else>
+            <nt-modal title="Test" v-bind="modal" />
+          </template>
         </template>
-        <template v-else>
-          <nt-modal title="Test" v-bind="modal" />
-        </template>
-      </template>
+      </div>
     </template>
   </teleport>
 </template>

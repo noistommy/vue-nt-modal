@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, getCurrentInstance, inject } from 'vue'
+import { ref, reactive, getCurrentInstance, inject, watch } from 'vue'
 import TestModal from './TestModal.vue'
 import WelcomeItem from './WelcomeItem.vue'
 
@@ -10,8 +10,15 @@ defineProps({
 const ntModal = inject('$ntModal')
 const count = ref(0)
 
+const stack = ref(false)
+
 // const { proxy } = getCurrentInstance()
 // const ntModal = proxy.$ntModal
+const modalOption = reactive({
+  useStack: stack.value,
+  clickToClose: false,
+  escapeToClose: false
+})
 
 const modalProps = reactive({
   title: 'Modal Title',
@@ -19,12 +26,13 @@ const modalProps = reactive({
   pText: '확인',
   nText: '취소',
   useHeader: true,
-  useNew: true
+  useNew: true,
+  useStack: stack.value
 })
-const modalOption = reactive({
-  useStack: false,
-  clickToClose: false,
-  escapeToClose: false
+
+watch(stack, (newValue) => {
+  modalOption.useStack = newValue
+  modalProps.useStack = newValue
 })
 
 // const title = '모달'
@@ -104,10 +112,10 @@ function showConfirm() {
     <div class="ga-segment border">
       <div class="check-set">
         <label class="ga-switch slide inside round">
-          <input type="checkbox" v-model="modalOption.useStack"  :checked="modalOption.useStack">
+          <input type="checkbox" v-model="stack"  :checked="stack">
           <span class="switch round"></span>
         </label>
-        <div class="label">{{modalOption.useStack ? 'Allow' : 'No allow'}} nested modal</div>
+        <div class="label">{{stack ? 'Allow' : 'No allow'}} nested modal</div>
       </div>
       <div class="contents">
         <button class="ga-button" @click="showModal">Show</button>

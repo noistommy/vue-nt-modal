@@ -19,7 +19,7 @@
     </div>
     <div class="modal-footer">
       <div class="btn-set add">
-        <button v-if="useNew" class="ga-button" @click="addModal">New</button>
+        <button class="ga-button" @click="addModal">New</button>
       </div>
 <!--      <button class="ga-button green" @click="returnTest('테스트')">테스트</button>-->
       <div class="btn-set">
@@ -44,7 +44,7 @@ defineOptions({
 
 const resultConfirm = ref(null)
 
-defineProps({
+const props = defineProps({
   modalId: {
     type: Number,
     required: true
@@ -67,6 +67,7 @@ defineProps({
   },
   useHeader: Boolean,
   useNew: Boolean,
+  useStack: Boolean
 })
 
 watch(resultConfirm.value, () => {
@@ -79,13 +80,14 @@ const addModal = () => {
     description: '모달 테스트 입니다.',
     pText: '저장',
     useHeader: false,
-    useNew: false
+    useNew: false,
+    useStack: props.useStack
   }
   ntModal.show({
     comp: TestModal,
     props: modalProps,
     options: {
-
+      useStack: props.useStack
     }
   })
 }

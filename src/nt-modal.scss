@@ -15,6 +15,7 @@ body .nt-modal {
     height: 100%;
   }
   .nt-modal-container {
+    max-width: 100%;
     display: inline-block;
     border: 1px solid $tableBorderColor;
     border-radius: 1em;
@@ -27,6 +28,7 @@ body .nt-modal {
     
     .modal {
       min-width: 350px;
+      max-width: 100%;
       // background-color: inherit;
       // color: inherit;
       .modal-header {
@@ -129,4 +131,15 @@ body .nt-modal {
       color: #909090;
       background-color: transparent;
     }
+}
+
+@media (max-width: 400px) {
+  body .nt-model {
+    .nt-modal-container {
+      top: auto;
+      bottom: 0;
+      transform: translate(-50%, 0);
+    }
+
+  }
 }

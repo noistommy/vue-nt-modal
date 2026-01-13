@@ -44,8 +44,8 @@ p {
 
 
 #app {
-  max-width: 1024px;
-  width: 780px;
+  max-width: 780px;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
 }
