@@ -31,7 +31,7 @@ const selectTheme = (mode) => {
         <li>
           <div class="ga-button icon">
             <i class="xi-github"></i>
-            <a href="https://github.com/noistommy/vue-nt-toast.git" class="link" target="_blank"></a>
+            <a href="https://github.com/noistommy/vue-nt-modal.git" class="link" target="_blank"></a>
           </div>
         </li>
       </nav>
