@@ -3,22 +3,20 @@
     <template v-if="useHeader">
       <slot name="header"></slot>
     </template>
-    <!-- <div class="modal-header">
-      <div class="title">{{ title }} ({{ modalId }})</div>
-      <div class="close-btn" @click="$emit('close')">
-        <slot name="close">
-          <i class="xi-close"></i>
-        </slot>
-      </div>
-    </div> -->
     <div class="modal-contents">
       <div class="contents">
+        <template v-if="!useHeader">
+          <div class="h3 title">{{ title }}</div>
+          <div class="close-btn" @click="$emit('close')">
+            <i class="xi-close"></i>
+          </div>
+        </template>
         <div>{{ description }}</div>
         <div>{{lorem_text}}</div>
       </div>
     </div>
     <div class="modal-footer">
-      <div class="btn-set add">
+      <div v-if="useStack" class="btn-set add">
         <button class="ga-button" @click="addModal">New</button>
       </div>
 <!--      <button class="ga-button green" @click="returnTest('테스트')">테스트</button>-->
@@ -79,7 +77,7 @@ const addModal = () => {
     title: '모달 테스트',
     description: '모달 테스트 입니다.',
     pText: '저장',
-    useHeader: false,
+    useHeader: true,
     useNew: false,
     useStack: props.useStack
   }
@@ -87,6 +85,7 @@ const addModal = () => {
     comp: TestModal,
     props: modalProps,
     options: {
+
       useStack: props.useStack
     }
   })
@@ -118,8 +117,18 @@ const returnTest = (data) => {
   background-color: var(--bgc);
   color: var(--txt);
   .modal-contents {
+    position: relative;
     max-height: 500px;
     overflow-y: auto;
+    .title {
+      margin-bottom: 1rem;
+    }
+    .close-btn {
+      position: absolute;
+      padding: 20px;
+      top: 0;
+      right: 0;
+    }
   }
   .modal-footer {
     display: flex;

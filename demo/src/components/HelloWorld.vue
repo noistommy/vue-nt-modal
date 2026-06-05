@@ -21,7 +21,7 @@ const modalOption = reactive({
 })
 
 const modalProps = reactive({
-  title: 'Modal Title',
+  title: '모달 타이틀',
   description: '모달 테스트 입니다.',
   pText: '확인',
   nText: '취소',
@@ -57,6 +57,15 @@ function showConfirm() {
 //     modalOption.escapeToClose = !modalOption.escapeToClose
 //   }
 // }
+const selectedMode = ref('modal');
+
+const selectedShow = () => {
+  if (selectedMode.value === 'modal') {
+    showModal()
+  } else {
+    showConfirm()
+  }
+}
 
 </script>
 
@@ -72,11 +81,30 @@ function showConfirm() {
     </template>
     <template #heading>Base
       <p><code>Modal</code> 과 <code>Confirm</code>의 구분은 show()의 param 중 comp에 의해 결정됩니다. 'confirm'으로 설정 시 지정된 confirm template이 나타나고 사용자 컴포넌트로 설정 시 해당 컴포넌트가 동적으로 적용 됩니다. </p>
+      <p>confirm 실행 시 컴펌 제목, 내용, 확인, 취소 버튼 텍스트를 지정 할 수 있습니다.</p>
     </template>
     <div class="ga-segment border">
       <div class="contents">
-        <button class="ga-button" @click="showModal">Modal</button>
-        <button class="ga-button" @click="showConfirm">Confirm</button>
+        <div class="ga-buttons small">
+          <button class="ga-button" :class="{selected: selectedMode === 'modal'}" @click="selectedMode = 'modal'">Modal</button>
+          <button class="ga-button"  :class="{selected: selectedMode === 'confirm'}" @click="selectedMode = 'confirm'">Confirm</button>
+        </div>
+      </div>
+      <div class="ga-form">
+        <div class="header">
+          <div class="title h5">직접 모달 타이틀과 설명을 입력해보세요.</div>
+        </div>
+        <div class="fields">
+          <div class="ga-input">
+            <input type="text" placeholder="title" v-model="modalProps.title">
+          </div>
+          <div class="ga-input">
+            <input type="text" placeholder="description" v-model="modalProps.description">
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="ga-button" @click="selectedShow">Show {{selectedMode}}</button>
       </div>
     </div>
   </WelcomeItem>
