@@ -12,6 +12,10 @@ const count = ref(0)
 
 const stack = ref(false)
 
+const LOREM = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus tenetur ea mollitia cupiditate accusantium earum nulla. Temporibus, expedita. Facere, consectetur. Amet iure perferendis vel ipsum, animi dolorum et ratione repellat?'
+
+const selectedMode = ref('modal');
+
 // const { proxy } = getCurrentInstance()
 // const ntModal = proxy.$ntModal
 const modalOption = reactive({
@@ -57,7 +61,6 @@ function showConfirm() {
 //     modalOption.escapeToClose = !modalOption.escapeToClose
 //   }
 // }
-const selectedMode = ref('modal');
 
 const selectedShow = () => {
   if (selectedMode.value === 'modal') {
@@ -66,6 +69,14 @@ const selectedShow = () => {
     showConfirm()
   }
 }
+
+watch(() => {
+  if (selectedMode.value === 'modal') {
+    modalProps.description = LOREM
+  } else {
+    modalProps.description = '모달 테스트 입니다.'
+  }
+})
 
 </script>
 
@@ -95,11 +106,13 @@ const selectedShow = () => {
           <div class="title h5">직접 모달 타이틀과 설명을 입력해보세요.</div>
         </div>
         <div class="fields">
+          <label>Title</label>
           <div class="ga-input">
             <input type="text" placeholder="title" v-model="modalProps.title">
           </div>
+          <label>Description</label>
           <div class="ga-input">
-            <input type="text" placeholder="description" v-model="modalProps.description">
+            <textarea placeholder="description" v-model="modalProps.description"></textarea>
           </div>
         </div>
       </div>

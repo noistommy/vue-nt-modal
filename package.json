@@ -1,14 +1,15 @@
 {
   "name": "vue-nt-modal",
   "private": false,
-  "version": "0.2.5",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "MODE=demo vite",
     "build": "npm run build:code",
     "build:code": "MODE=lib vite build",
     "build:demo": "MODE=demo vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs": "rm -rf docs && cp -rf demo/dist docs"
   },
   "main": "./dist/nt-modal.umd.js",
   "module": "./dist/nt-modal.es.js",
@@ -34,8 +35,5 @@
     "sass": "^1.66.1",
     "vite": "^4.4.5"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/noistommy/vue-nt-modal.git"
-  }
+  "license": "MIT"
 }

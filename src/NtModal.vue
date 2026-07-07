@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition name="fade" duration="550">
     <div v-if="isVisible" class="nt-modal" :style="offsetStyle">
       <div class="nt-modal-background" @click="closeModalToClick" />
       <div class="nt-modal-container">
@@ -76,15 +76,17 @@ const closeModalToClick = (event) => {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 500ms;
+  transition: all 300ms;
 }
 
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(-20px);
 }
 </style>

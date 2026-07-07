@@ -1,6 +1,7 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
+
 
 
 const theme = ref('system');
@@ -14,6 +15,10 @@ const selectTheme = (mode) => {
   
   sessionStorage.setItem('theme-mode', mode)
 }
+
+onMounted(() => {
+  selectTheme(sessionStorage.getItem('theme-mode'))
+})
 </script>
 
 <template>
@@ -22,16 +27,23 @@ const selectTheme = (mode) => {
     <div class="menu-wrapper">
       <nav>
         <li>
-          <div class="ga-buttons round">
+          <div class="ga-buttons">
             <div class="ga-button icon" :class="{selected: theme === 'light'}" @click="selectTheme('light')"><i class="xi-sun" /></div>
             <div class="ga-button icon" :class="{selected: theme === 'dark'}" @click="selectTheme('dark')"><i class="xi-moon" /></div>
             <div class="ga-button icon" :class="{selected: theme === 'system'}" @click="selectTheme('system')"><i class="xi-desktop" /></div>
           </div>
         </li>
         <li>
-          <div class="ga-button icon">
-            <i class="xi-github"></i>
-            <a href="https://github.com/noistommy/vue-nt-modal.git" class="link" target="_blank"></a>
+          <div class="ga-buttons">
+            <div class="ga-button icon">
+              <i class="xi-github"></i>
+              <a href="https://github.com/noistommy/vue-nt-modal.git" class="link" target="_blank"></a>
+            </div>
+            <div class="ga-button icon">
+              <i class="xi-package"></i>
+              <a href="https://www.npmjs.com/package/vue-nt-modal" class="link" target="_blank"></a>
+            </div>
+
           </div>
         </li>
       </nav>
@@ -41,7 +53,9 @@ const selectTheme = (mode) => {
         <div class="main-title">
           Nt Modal
         </div>
-        <div class="sub-title">A simple and flexible modal component for Vue 3</div>
+        <div class="sub-title">A simple and flexible modal component for 
+          <span class="ga-tag label green">Vue</span>
+        </div>
       </div>
     </div>
   </header>

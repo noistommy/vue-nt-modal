@@ -12,7 +12,6 @@
           </div>
         </template>
         <div>{{ description }}</div>
-        <div>{{lorem_text}}</div>
       </div>
     </div>
     <div class="modal-footer">
@@ -35,7 +34,6 @@ import { ref, inject, watch } from 'vue'
 
 const ntModal = inject('$ntModal')
 
-const lorem_text =  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in odio quis velit vulputate luctus. Vivamus suscipit, mauris eget hendrerit tempor, dolor dolor commodo lorem, feugiat euismod tortor eros id nisl. Fusce finibus eget nisl non malesuada. Praesent dictum magna eget metus congue vehicula. Quisque quis ex ex. Pellentesque efficitur rhoncus posuere. Nulla nec rutrum enim. Nam at magna ut arcu euismod tincidunt. Morbi dapibus ultrices erat, ut venenatis magna consectetur sit amet. Donec efficitur quis erat id suscipit. Sed pellentesque nunc quis turpis euismod accumsan.'
 defineOptions({
   name: 'TestModal'
 })
@@ -72,10 +70,13 @@ watch(resultConfirm.value, () => {
   this.returnTest(resultConfirm.value)
 })
 
+const LOREM = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus tenetur ea mollitia cupiditate accusantium earum nulla. Temporibus, expedita. Facere, consectetur. Amet iure perferendis vel ipsum, animi dolorum et ratione repellat?'
+
+
 const addModal = () => {
   const modalProps = {
     title: '모달 테스트',
-    description: '모달 테스트 입니다.',
+    description: LOREM,
     pText: '저장',
     useHeader: true,
     useNew: false,
@@ -85,7 +86,6 @@ const addModal = () => {
     comp: TestModal,
     props: modalProps,
     options: {
-
       useStack: props.useStack
     }
   })
