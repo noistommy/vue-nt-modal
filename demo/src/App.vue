@@ -1,5 +1,6 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import Cabinet from './components/NTCabinet/Cabinet.vue'
 import {ref, onMounted} from 'vue'
 
 
@@ -62,6 +63,7 @@ onMounted(() => {
   <main>
     <HelloWorld msg="Nt Modal" />
   </main>
+  <Cabinet />
 </template>
 
 <style scoped>
