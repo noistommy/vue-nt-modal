@@ -37,16 +37,15 @@ import { BEUI, REACT_MODULES, VUE_MODULES } from './moduleData'
       <div class="column span-4 span-xs-12 pr-10">
         <h5 class="header gray-txt-40">Design system</h5>
         <div class="ga-list">
-          <div class="item p-1">
+          <a class="item p-1" href="https://frog-ui-css.vercel.app" target="_blank">
             <img class="logo-img" src="./img/frog-profile.svg" alt="logo" /> 
             <div class="item-title ml-4">Frog UI</div>
             <div class="btn-set">
               <div class="ga-button icon compact">
                 <i class="xi-link"></i>
-                <a class="link" href="https://frog-ui-css.vercel.app" target="_blank"></a>
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <h5 class="header gray-txt-40">UI Components</h5>
         <div class="ga-list">
