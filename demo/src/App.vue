@@ -28,14 +28,14 @@ onMounted(() => {
     <div class="menu-wrapper">
       <nav>
         <li>
-          <div class="ga-buttons">
+          <div class="ga-buttons small">
             <div class="ga-button icon" :class="{selected: theme === 'light'}" @click="selectTheme('light')"><i class="xi-sun" /></div>
             <div class="ga-button icon" :class="{selected: theme === 'dark'}" @click="selectTheme('dark')"><i class="xi-moon" /></div>
             <div class="ga-button icon" :class="{selected: theme === 'system'}" @click="selectTheme('system')"><i class="xi-desktop" /></div>
           </div>
         </li>
         <li>
-          <div class="ga-buttons">
+          <div class="ga-buttons small">
             <div class="ga-button icon">
               <i class="xi-github"></i>
               <a href="https://github.com/noistommy/vue-nt-modal.git" class="link" target="_blank"></a>
@@ -49,14 +49,24 @@ onMounted(() => {
         </li>
       </nav>
     </div>
-    <div class="wrapper">
-      <div class="greetings">
-        <div class="main-title">
-          Nt Modal
-        </div>
-        <div class="sub-title">A simple and flexible modal component for 
-          <span class="ga-tag label green">Vue</span>
-        </div>
+    <div class="wrapper ga flex center p-10">
+      <div class="greetings preview-modal">
+        <div className="modal-header">
+            <div className="title">NT Modal</div>
+            <div className="close-btn">
+            </div>
+          </div>
+          <div className="modal-contents">
+            <div class="main-title">
+              Nt Modal
+            </div>
+            <div class="sub-title">A simple and flexible modal component for 
+              <span class="ga-tag label green">Vue</span>
+            </div>
+          </div>
+          <div className="modal-footer be flex center">
+            <div className="ga-button small">Let's start</div>
+          </div>
       </div>
     </div>
   </header>

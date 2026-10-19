@@ -1,4 +1,6 @@
 <script setup>
+import { BEUI, REACT_MODULES, VUE_MODULES } from './moduleData'
+
 
 </script>
 
@@ -48,85 +50,52 @@
         </div>
         <h5 class="header gray-txt-40">UI Components</h5>
         <div class="ga-list">
-          <div class="item p-1">
-            <img src="./img/be-ui-vue.svg" alt="logo" class="logo-img" /> 
-            <div class="item-title ml-4">BEUI - Vue</div>
-            <div class="btn-set">
-              <div class="ga-button icon compact">
-                <i class="xi-link"></i>
-                <a class="link" href="https://beui.vercel.app" target="_blank"></a>
+          <template v-for="item in BEUI" :key="item.name">
+            <a class="item p-1" :href="item.link" target="_blank">
+              <img :src="item.logo" alt="logo" class="logo-img" />
+              <div class="item-title ml-4">{{item.name}}</div>
+              <div class="btn-set">
+                <div class="ga-button compact icon">
+                  <template v-if="item.current">Current</template>
+                  <i v-else class="xi-link"></i>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="item p-1">
-            <img src="./img/be-ui-react.svg" alt="logo" class="logo-img" /> 
-            <div class="item-title ml-4">BEUI - React</div>
-            <div class="btn-set">
-              <div class="ga-button icon compact">
-                <i class="xi-link"></i>
-                <a class="link"  href="https://react-ga-ui.vercel.app" target="_blank"></a>
-              </div>
-            </div>
-          </div>
+            </a>
+          </template>
         </div>
       </div>
       <div class="column span-4 span-xs-12 pr-10">
         <h5 class="header gray-txt-40">Modules by react</h5>
         <div class="ga-list">
-          <div class="item p-1">
-            <img src="./img/nt-profile.svg" alt="logo" class="logo-img" />
-            <div class="item-title ml-4">NT Modal</div>
-            <div class="btn-set">
-              <div class="ga-button compact icon">
-                <i class="xi-link"></i>
-                <a class="link" href="https://noistommy.github.io/react-nt-modal" target="_blank"></a>
+          <template v-for="item in REACT_MODULES" :key="item.name">
+            <a class="item p-1" :href="item.link" target="_blank">
+              <img :src="item.logo" alt="logo" class="logo-img" />
+              <div class="item-title ml-4">{{item.name}}</div>
+              <div class="btn-set">
+                <div class="ga-button compact icon">
+                  <template v-if="item.current">Current</template>
+                  <i v-else class="xi-link"></i>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="item p-1">
-            <img src="./img/nt-profile.svg" alt="logo" class="logo-img" />
-            <div class="item-title ml-4">NT Toast</div>
-            <div class="btn-set">
-              <div class="ga-button icon compact">
-                <i class="xi-link"></i>
-                <a class="link" href="https://noistommy.github.io/react-nt-toast" target="_blank"></a>
-              </div>
-            </div>
-          </div>
+            </a>
+          </template>
         </div>
       </div>
       <div class="column span-4 span-xs-12 pr-10">
         <h5 class="header gray-txt-40">Modules by vue</h5>
         <div class="ga-list">
-          <div class="item p-1">
-            <img src="./img/nt-profile.svg" alt="logo" class="logo-img" />
-            <div class="item-title ml-4">NT Modal</div>
-            <div class="btn-set">
-              <div class="ga-button round compact">
-                Current
+          <template v-for="item in VUE_MODULES" :key="item.name">
+            <a class="item p-1" :href="item.link" target="_blank">
+              <img :src="item.logo" alt="logo" class="logo-img" />
+              <div class="item-title ml-4">{{item.name}}</div>
+              <div class="btn-set">
+                <div class="ga-button compact icon">
+                  <template v-if="item.current">Current</template>
+                  <i v-else class="xi-link"></i>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="item p-1">
-            <img src="./img/nt-profile.svg" alt="logo" class="logo-img" />
-            <div class="item-title ml-4">NT Toast</div>
-            <div class="btn-set">
-              <div class="ga-button icon compact">
-                <i class="xi-link"></i>
-                <a class="link" href="https://noistommy.github.io/vue-nt-toast" target="_blank"></a>
-              </div>
-            </div>
-          </div>
-          <div class="item p-1">
-            <img src="./img/nt-profile.svg" alt="logo" class="logo-img" />
-            <div class="item-title ml-4">NT Tooltip</div>
-            <div class="btn-set">
-              <div class="ga-button icon compact">
-                <i class="xi-link"></i>
-                <a class="link" href="https://noistommy.github.io/vue-nt-tooltip" target="_blank"></a>
-              </div>
-            </div>
-          </div>
+            </a>
+          </template>
         </div>
       </div>
     </div>
