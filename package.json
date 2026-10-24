@@ -20,12 +20,20 @@
     },
     "./nt-modal.css": "./dist/nt-modal.css"
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "bugs": {
     "url": "https://github.com/noistommy/vue-nt-modal/issues"
   },
   "homepage": "https://github.com/noistommy/vue-nt-modal#readme",
-  "keywords": ["vue", "modal", "teleport", "plugins"],
+  "keywords": [
+    "vue",
+    "modal",
+    "teleport",
+    "plugins"
+  ],
   "peerDependencies": {
     "mitt": "^3.0.1",
     "vue": "^3.3.4"
@@ -35,5 +43,8 @@
     "sass": "^1.66.1",
     "vite": "^4.4.5"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "nt-cabinet-component": "github:noistommy/nt-cabinet-component"
+  }
 }
